@@ -1,4 +1,5 @@
 //header file for process Pattern=1
+#include "matrix_mult.h"
 int** processPattern1(int**A){
     int **logicalA;
     int **logAsq;
@@ -14,14 +15,15 @@ int** processPattern1(int**A){
         }
     }
     //calculate logical(A)^2
-    for(int i=0; i<25; i++){
+    /*for(int i=0; i<25; i++){
         for(int j=0; j<25; j++){
             logAsq[i][j]=0;
             for (int k=0; k<25; k++){
                 logAsq[i][j] += logicalA[i][k]*logicalA[k][j];
             }
         }
-    }
+    }*/
+    logAsq = matrix_mult(logicalA, logicalA);
     //recalculating logical(input) to get PP2
     for(int i=0; i<25; i++){
         for(int j=0; j<25; j++){
