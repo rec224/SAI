@@ -7,7 +7,7 @@
 #include "GS_QR_fac.h"
 #include "backsub.h"
 //using namespace std;
-int **pattern;
+double **pattern;
 int main() {
     /*Step 1: first thing we want to do is load in the matricies
     do this using a text file with the information for 
@@ -40,12 +40,14 @@ int main() {
     int **vecE;
     double **R;
     double **Q;
+    double **M;
+    double **mk;
     //compute lease squares using QR factorization
     for(int i=0; i<n; i++){
         for(int j=0; j<n; j++){
-            vecE[j][1]=0;
+            vecE[j][0]=0;
         }
-        vecE[i][1] =1;
+        vecE[i][0] =1;
         //now we need to convert GS_QR into c++
         GS_QR_fac(A, Q, R);
         double **Qt;
@@ -59,7 +61,11 @@ int main() {
         vecY= matrix_mult(Qt, vecE);
         //mk = backsub(R, y)
         //have to write the C++ file for backsub first!
-        double **mk = backsub(R, vecY);
+        mk = backsub(R, vecY);
+        //put into a double ** --> record all the calculated columns
+        for(int k=0; k<n; k++){
+            M[i][k] = mk[k][0];
+        }
     }
     cout < "Hello World!";
     return 0;
