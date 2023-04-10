@@ -5,7 +5,7 @@ double ** matrix_mult(double **A, double** B){
     int n_b = sizeof(B)/sizeof(B[0]);
     int p = sizeof(B[0])/sizeof(B[0][0]);
     if(n != n_b){
-        return nullptr;
+        return NULL;
     }
     double **C;
     for(int i=0; i<m; i++){

@@ -5,6 +5,7 @@
 #include <string>
 #include "ProcessPattern.h"
 #include "GS_QR_fac.h"
+#include "backsub.h"
 //using namespace std;
 int **pattern;
 int main() {
@@ -58,6 +59,7 @@ int main() {
         vecY= matrix_mult(Qt, vecE);
         //mk = backsub(R, y)
         //have to write the C++ file for backsub first!
+        double **mk = backsub(R, vecY);
     }
     cout < "Hello World!";
     return 0;
