@@ -1,8 +1,8 @@
 //header file for process Pattern=1
 #include "matrix_mult.h"
-int** processPattern1(int**A){
-    int **logicalA;
-    int **logAsq;
+double** processPattern1(double**A){
+    double **logicalA;
+    double **logAsq;
     //heres PP
     for(int i=0; i<25; i++){
         for(int j=0; j<25; j++){
