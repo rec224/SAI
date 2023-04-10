@@ -1,0 +1,49 @@
+#include <iostream>
+#include <fstream>
+#include <sstream>
+#include <stdio.h>
+#include <string>
+#include "ProcessPattern.h"
+//using namespace std;
+int **pattern;
+int main() {
+    /*Step 1: first thing we want to do is load in the matricies
+    do this using a text file with the information for 
+    the matricies. 
+    Parse from the file to find the nonzero locations as 
+    well as the nonzero values
+    */
+    //FILE *rfile;
+    //rfile = fopen("FDnonlinearMat1_1.txt", "r");
+    //if(isOpen)
+    int n=25;
+    int** A;
+    /*heres where I want to read the text file and create
+    A from the input list of points and their values
+    */
+    for(int i=0; i<n; i++){
+        int rowA[25] = {0};
+        int oldA[25] = A[i];
+        int newA[25]= rowA;
+        *(A[i]) = newA;
+        i++;
+    }
+    //we've made A, now we need to make the sparsity pattern
+    //pattern is a global variable here, want to make sure not 
+    //mess aroud with that too much
+    pattern = processPattern(A);
+   /* Step 3: convert for loop into c++ (lines 37-64)
+   */
+    //initialize that column of all 0s
+    int **vecE;
+    //compute lease squares using QR factorization
+    for(int i=0; i<n; i++){
+        for(int j=0; j<n; j++){
+            vecE[j][1]=0;
+        }
+        vecE[i][1] =1;
+        //now we need to convert GS_QR into c++
+    }
+    cout < "Hello World!";
+    return 0;
+}
