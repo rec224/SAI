@@ -51,16 +51,6 @@ int main() {
     }
     //close the file
     readFile.close();
-    /*heres where I want to read the text file and create
-    A from the input list of points and their values
-    */
-    for(int i=0; i<n; i++){
-        double rowA[25] = {0};
-        //double oldA[25] = A[i];
-        //double newA[25]= rowA;
-        //*(A[i]) = newA;
-        i++;
-    }
     //we've made A, now we need to make the sparsity pattern
     //pattern is a global variable here, want to make sure not 
     //mess aroud with that too much
