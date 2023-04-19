@@ -4,7 +4,7 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
-#include<vector>
+#include <vector>
 #include "ProcessPattern.h"
 #include "GS_QR_fac.h"
 #include "backsub.h"
