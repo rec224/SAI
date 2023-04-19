@@ -3,7 +3,7 @@
 double** processPattern1(double**A){
     double **logicalA;
     double **logAsq;
-    //heres PP
+    //heres PP for pattern =1
     for(int i=0; i<25; i++){
         for(int j=0; j<25; j++){
             if(A[i][j]!=0){
