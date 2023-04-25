@@ -3,36 +3,41 @@ found using Gram Schmidt QR factorization
 */
 #include "matrix_mult.h"
 #include <cmath>
+#include <vector>
+//create a data structure to hold the values of the sparse matrix (x, y, val)
+struct pointVal{
+    int x;
+    int y;
+    double val;
+};
 //function is void, assumes Q and R are null and stores 
 //result of QR factorization in Q and R. 
-void GS_QR_fac(double**A, double **Q, double **R){
+void GS_QR_fac(vector<pointVal>, vector<pointVal>,vector<pointVal>);
+void GS_QR_fac(vector<pointVal>A, vector<pointVal>Q, vector<pointVal>R){
     //get index values
-    int m = sizeof(A)/sizeof(A[0]);
-    int n = sizeof(A[0])/sizeof(A[0][0]);
-    //create 0 vectors. r mxn q mxm
-    double **r;
-    double **q;
-    for(int i=0; i<m; i++){
-        for(int j=0; j<m; j++){
-            q[i][j]=0;
-        }
-    }
-    for(int i=0; i<m; i++){
-        for(int j=0; j<n; j++){
-            r[i][j]=0;
-        }
+    int n = A.size();
+    //create 0 vectors both of length n
+    vector<double>r;
+    vector<double>q;
+    for(int i=0; i<n; i++){
+        r.at(i)=0;
+        q.at(i)=0;
     }
     /*for j=1:n -- y = a(:,j)
      * now we know that A(:,j) means all rows 
      * and the jth column of A
     */
     //matlab .' means transpose
-    double **y;
-    double **qVec;
-    for(int j=0; j<n; j++){
-        for(int i=0; i<n; i++){
-            //y is the jth column of A
-            y[i][0] = A[i][j];
+    vector<double>qVec;
+    for(int j=1; j<n+1; j++){
+        //y is the jth column of A
+        //need every instance where A.at(i).y=
+        vector<double>y_vec;
+        for(int i=0; i<A.size(); i++){
+            pointVal p = A.at(i);
+            if(p.y ==j){
+                y_vec.push_back(p.val);
+            }
         }
         for(int k=0; k<n-1; k++){
             for(int i=0; i<n; i++){
