@@ -60,10 +60,11 @@ int main() {
     vector<double>mk;
     //compute lease squares using QR factorization
     for(int i=0; i<n; i++){
-        for(int j=0; j<n; j++){
-            vecE[j][0]=0;
+        for(int j=0; j<A.size(); j++){
+            double d = 0.0;
+            vecE.push_back(d);
         }
-        vecE[i][0] =1;
+        vecE.at(i)=1;
         //now we need to convert GS_QR into c++
         GS_QR_fac(A, Q, R);
         double **Qt;

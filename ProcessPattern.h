@@ -1,5 +1,4 @@
 //header file for process Pattern=1
-#include "matrix_mult.h"
 #include <vector>
 //create a data structure to hold the values of the sparse matrix (x, y, val)
 struct pointVal{
@@ -8,7 +7,7 @@ struct pointVal{
     double val;
 };
 vector<pointVal> processPattern1(vector<pointVal>B); 
-vector<pointVal> processPattern1(vector<pointVal>B) {
+vector<pointVal> processPattern1(vector<pointVal>B){
     //heres PP for pattern =1
     vector<pointVal> logical_A;
     for(int i=0; i<B.size(); i++){
