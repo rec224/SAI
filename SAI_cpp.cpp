@@ -57,7 +57,7 @@ int main() {
     vector<pointVal>R;
     vector<pointVal>Q;
     vector<pointVal>M;
-    vector<double>mk;
+    vector<pointVal>mk;
     //compute lease squares using QR factorization
     for(int i=0; i<n; i++){
         for(int j=0; j<A.size(); j++){
