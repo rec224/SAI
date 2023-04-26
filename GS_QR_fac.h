@@ -82,7 +82,7 @@ void GS_QR_fac(vector<pointVal>A, vector<pointVal>Q, vector<pointVal>R){
                                     p.val = sum;
                                     part_r.at(z)=p;
                                     //erase the w-th element
-                                    part_r.erase(part_r.begin(), w+1);
+                                    part_r.erase(part_r.begin()+w, part_r.begin()+w+1);
                                     w--;
                                 }
                             }

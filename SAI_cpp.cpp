@@ -53,7 +53,7 @@ int main() {
    /* Step 3: convert for loop into c++ (lines 37-64)
    */
     //initialize vectors we will need for QR fac and SAI computations
-    vector<double>vecE;
+    vector<pointVal>vecE;
     vector<pointVal>R;
     vector<pointVal>Q;
     vector<pointVal>M;
@@ -62,20 +62,60 @@ int main() {
     for(int i=0; i<n; i++){
         for(int j=0; j<A.size(); j++){
             double d = 0.0;
-            vecE.push_back(d);
+            pointVal m;
+            m.x=i;
+            m.y=j;
+            m.val=d;
+            vecE.push_back(m);
         }
-        vecE.at(i)=1;
+        pointVal m =vecE.at(i);
+        m.val=1;
+        vecE.at(i)=m;
         //now we need to convert GS_QR into c++
         GS_QR_fac(A, Q, R);
-        double **Qt;
-        for(int a=0; a<n; a++){
-            for(int b=0; b<n; b++){
-                //get the transpose of Q
-                Qt[b][a] = Q[a][b];
+        vector<pointVal>Qt;
+        for(int a=0; a<Q.size(); a++){
+            pointVal qpoint = Q.at(a);
+            int x2 = qpoint.y;
+            int y2= qpoint.x;
+            qpoint.x=x2;
+            qpoint.x=y2;
+            Qt.push_back(qpoint);
+        }
+        vector<pointVal>vecY;
+        //vecY= matrix_mult(Qt, vecE);
+        for(int f=0; f<Qt.size(); f++){
+            for(int g=0; g<vecE.size(); g++){
+                pointVal p = Qt.at(f);
+                int x1 = p.x;
+                int y2 = p.y;
+                pointVal q = vecE.at(g);
+                int x2= q.x;
+                int y2 = q.y;
+                if (x1 == y2){
+                    pointVal pq;
+                    pq.x = x1;
+                    pq.y = y2;
+                    pq.val = (p.val)*(q.val);
+                    vecY.push_back(pq);
+                }
             }
         }
-        double **vecY;
-        vecY= matrix_mult(Qt, vecE);
+        //vecY is too large, need to sum up all of the values
+        for(int f=0; f<vecY.size() -1; f++){
+            pointVal p = vecY.at(f);
+            for(int g=f+1; g < vecY.size(); g++){
+                pointVal q = vecY.at(g);
+                if((p.x == q.x) && (p.y ==q.y)){
+                    double sum = p.val + q.val;
+                    p.val = sum;
+                    vecY.at(f)=p;
+                    //erase the g-th element
+                    vecY.erase(vecY.begin()+g,vecY.begin()+g+1);
+                    g--;
+                }
+            }
+        }
         //mk = backsub(R, y)
         //have to write the C++ file for backsub first!
         mk = backsub(R, vecY);
