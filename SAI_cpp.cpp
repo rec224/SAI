@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
+#include <string_view>
+#include <string>
+#include <format>
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -117,17 +119,23 @@ int main() {
             }
         }
         //mk = backsub(R, y)
-        //have to write the C++ file for backsub first!
         mk = backsub(R, vecY);
-        //put into a double ** --> record all the calculated columns
-        for(int k=0; k<n; k++){
-            M[i][k] = mk[k][0];
+        //put into a M vector
+        //using vectors, do we need to do this?
+        int mk_len = mk.size();
+        for(int k=0; k<mk_len; k++){
+            M.push_back(mk.at(k));
         }
     }
-    for(int i=0; i<n; i++){
-        for(int j=0; j<n; j++){
-            cout << M[i][j];
-        }
+    for(int i=0; i<M.size(); i++){
+        pointVal mpv = M.at(i);
+        int y= mpv.y;
+        double val = mpv.val;
+        std::string x_s = std::to_string(mpv.x);
+        std::string y_s = std::to_string(mpv.y);
+        std::string v_s = std::to_string(mpv.val);
+        std::string pVec = "(" + x_s + ", "+y_s +") "+v_s;
+        cout << pVec;
     }
     return 0;
 }
